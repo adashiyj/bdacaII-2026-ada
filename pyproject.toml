@@ -1,7 +1,7 @@
 [project]
 name = "py-class"
 version = "0.1.0"
-requires-python = ">=3.12,<3.13"
+requires-python = ">=3.11,<3.12"
 dependencies = [
   # --- Core environment ---
   "ipykernel",
@@ -45,7 +45,7 @@ dependencies = [
   
   # --- Transformers & Embeddings ---
   "transformers",
-  "torch",
+  "torch>=2.0,<2.1",
   "sentence-transformers",
   "gensim",
   "fasttext-wheel",
