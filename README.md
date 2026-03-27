@@ -9,6 +9,15 @@ programming.
 
 ---
 
+## Data
+Raw data files are stored as a zip archive in `data/raw/` due to GitHub's
+file size limits. The preprocessing notebook (02_preprocessing.ipynb)
+will automatically extract them on first run. Alternatively, unzip manually:
+
+    unzip Final_project/data/raw/raw_data.zip -d Final_project/data/raw/
+
+---
+
 ## Repository Structure
 
 Your project follows this organization:
