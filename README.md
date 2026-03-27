@@ -10,11 +10,58 @@ programming.
 ---
 
 ## Data
-Raw data files are stored as a zip archive in `data/raw/` due to GitHub's
-file size limits. The preprocessing notebook (02_preprocessing.ipynb)
-will automatically extract them on first run. Alternatively, unzip manually:
 
-    unzip Final_project/data/raw/raw_data.zip -d Final_project/data/raw/
+### Raw Data (not tracked by Git — local collection required)
+
+The following raw data files were collected via the MediaWiki API using
+`Final_project/notebooks/data_collection.ipynb` and are not tracked by
+Git due to GitHub's 100MB file size limit:
+
+| File | Location | Description |
+|------|----------|-------------|
+| `registration_log.jsonl` | `Final_project/data/raw/` | 30,000 newcomer accounts from Special:Log/newusers (May 25–31, 2025) |
+| `newcomer_edits.jsonl` | `Final_project/data/raw/` | Edit histories for all registered accounts |
+| `talkpage_messages.jsonl` | `Final_project/data/raw/` | Talk page revision histories for 5,845 active newcomers |
+| `sample_index.json` | `Final_project/data/processed/` | Final sample of 5,845 active newcomers with session edit counts |
+
+**To reproduce the analysis from scratch:**
+1. Clone the repository
+2. Set up the Python 3.10.18 environment (see Environment Setup below)
+3. Run `Final_project/notebooks/data_collection.ipynb` end-to-end
+   — this will regenerate all four files above via the MediaWiki API
+   — estimated collection time: several days due to API rate limits
+4. Proceed to `Final_project/notebooks/02_preprocessing.ipynb`
+
+**To skip re-collection and run from existing data:**
+Contact the author at adashiyj@gmail.com to request the raw data files.
+Place them in the directories listed above before running notebook 02.
+
+### External Dataset (tracked by Git)
+
+The Zheng et al. (2019) bot role classification file is committed directly
+to the repository and requires no additional setup:
+
+| File | Location | Description |
+|------|----------|-------------|
+| `botrole_predict_and_proportion_of_edits.xlsx` | `data/raw/` | Predicted role labels for 1,601 English Wikipedia bots |
+
+**Note:** This file is located under `data/raw/` rather than
+`Final_project/data/raw/` due to how the repository was originally
+structured. The preprocessing notebook points to this path directly.
+
+## Environment Setup
+
+This project requires **Python 3.10.18**. ConvoKit (used for politeness
+scoring in notebook 03) is incompatible with Python 3.11 and above.
+```bash
+# Create and activate a virtual environment
+python3.10 -m venv convokit_env
+source convokit_env/bin/activate        # Mac/Linux
+convokit_env\Scripts\activate           # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+```
 
 ---
 
