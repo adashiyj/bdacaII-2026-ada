@@ -77,7 +77,7 @@ To re-run the full pipeline from scratch, follow the steps below. Note that note
 
 The bot role classification file (`botrole_predict_and_proportion_of_edits.xlsx`) is from Zheng et al. (2019) and is already included in `data/raw/`. It can also be downloaded from:
 
-> https://github.com/adashiyj/Wikipedia_bots_taxonomy/blob/master/botrole_predict_and_proportion_of_edits.xlsx
+> [original study's repository](https://github.com/Nicozheng/Wikipedia_bots_taxonomy)
 
 ---
 
