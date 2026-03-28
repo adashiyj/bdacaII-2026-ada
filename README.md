@@ -1,7 +1,9 @@
 # Human or Bot: Who Drives New Editors Away from English Wikipedia?
 
 **Owner:** Ada Shi (13558846)
+
 **Lecturer:** Dr. Felicia Loecherbach
+
 **Course:** Big Data and Automated Content Analysis II (2025–2026)  
 
 ---
