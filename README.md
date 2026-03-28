@@ -1,8 +1,10 @@
-# Human or Bot: Who Drives New Editors Away from English Wikipedia?
+# Human🧑‍💻 or Bot🤖️: Who Drives New Editors Away from English Wikipedia?
 
+**Author:** Ada Shi (13558846)
+**Lecturer:** Dr. Felicia Loecherbach
 **Course:** Big Data and Automated Content Analysis II (2025–2026)  
 **Repository:** [adashiyj/bdacaII-2026-ada](https://github.com/adashiyj/bdacaII-2026-ada)  
-**Final project folder:** [`Final project/`](https://github.com/adashiyj/bdacaII-2026-ada/tree/main/Final%20project)
+**Individual Assignment 2: Final project (Code):** [`Final project/`](https://github.com/adashiyj/bdacaII-2026-ada/tree/main/Final%20project)
 
 > **Note:** This repository contains all materials for the BDACA II course (lecture notes, practice notebooks, assignments). The final project is self-contained within the `Final project/` folder. All paths below are relative to that folder.
 
