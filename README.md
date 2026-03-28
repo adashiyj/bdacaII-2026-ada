@@ -46,12 +46,11 @@ Final project/
 │   ├── figure1_contact_rates.png
 │   ├── figure2_odds_ratios.png
 │   └── figure3_politeness_heatmap.png
-├── notebooks/                      # Analysis notebooks
-│   ├── 01_data_collection.ipynb
-│   ├── 02_preprocessing.ipynb
-│   ├── 03_feature_construction.ipynb
-│   └── 04_analysis.ipynb
-└── README.md
+└── notebooks/                      # Analysis notebooks
+    ├── 01_data_collection.ipynb
+    ├── 02_preprocessing.ipynb
+    ├── 03_feature_construction.ipynb
+    └── 04_analysis.ipynb
 ```
 
 ---
