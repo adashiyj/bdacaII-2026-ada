@@ -26,7 +26,7 @@ The study collects 5,845 active newcomers registered on English Wikipedia during
 
 ---
 
-## Folder Structure
+## Finap Project's Folder Structure
 
 ```
 Final project/
