@@ -1,0 +1,137 @@
+# Human or Bot: Who Drives New Editors Away from English Wikipedia?
+
+**Course:** Big Data and Automated Content Analysis II (2025–2026)  
+**Repository:** [adashiyj/bdacaII-2026-ada](https://github.com/adashiyj/bdacaII-2026-ada/tree/main/Final%20project)
+
+---
+
+## Project Overview
+
+This project replicates and extends Zheng et al. (2019), who used unsupervised machine learning to develop a taxonomy of nine Wikipedia bot roles and found that different bot roles have differential effects on newcomer retention.
+
+**RQ1 (replication):** To what extent do different bot roles, compared to human editors, affect newcomer retention, and have these effects changed since Zheng et al. (2019)?
+
+**RQ2 (extension):** To what extent do politeness strategies directed at newcomers differ across bot roles and human editors, and do these differences explain variation in newcomer retention?
+
+The study collects 5,845 active newcomers registered on English Wikipedia during May 25–31, 2025, matches their talk page messages to bot role labels from Zheng et al.'s (2019) classification file, scores each message for 21 politeness strategies using ConvoKit, and estimates logistic regression models predicting newcomer retention.
+
+---
+
+## Folder Structure
+
+```
+Final project/
+├── data/
+│   ├── raw/                        # Raw data collected from the API
+│   │   ├── registration_log.jsonl
+│   │   ├── newcomer_edits.jsonl
+│   │   ├── talkpage_messages.jsonl
+│   │   └── botrole_predict_and_proportion_of_edits.xlsx  # Zheng et al. (2019)
+│   ├── processed/                  # Cleaned and derived datasets
+│   │   ├── sample_index.json
+│   │   ├── newcomers.csv
+│   │   ├── messages.csv
+│   │   ├── analysis_dataset.csv
+│   │   ├── messages_with_text.csv
+│   │   ├── politeness_scores.csv
+│   │   └── politeness_profiles.csv
+│   └── figures/                    # All figures used in the report
+├── 01_data_collection.ipynb
+├── 02_preprocessing.ipynb
+├── 03_feature_construction.ipynb
+├── 04_analysis.ipynb
+└── README.md
+```
+
+---
+
+## Requirements
+
+This project requires **two separate Python environments** because ConvoKit (used in notebook 03) is incompatible with Python 3.11 and above.
+
+### Environment 1 — General pipeline (Python 3.10 or 3.11)
+
+```bash
+pip install requests pandas numpy scikit-learn statsmodels matplotlib openpyxl
+```
+
+### Environment 2 — ConvoKit scoring (Python 3.10 only)
+
+```bash
+pip install convokit
+python -m spacy download en_core_web_sm
+```
+
+All notebooks were developed and tested in Python 3.10.18. It is recommended to use a dedicated virtual environment (e.g., `conda create -n convokit_env python=3.10`) for notebook 03.
+
+---
+
+## Data
+
+All raw and processed data files are committed to the repository and can be found in `Final project/data/`. No re-collection is needed to reproduce the analysis from the processed files.
+
+To re-run the full pipeline from scratch, follow the steps below. Note that notebooks 01 and 02 make a large number of MediaWiki API calls and will take several hours to complete.
+
+### External dataset
+
+The bot role classification file (`botrole_predict_and_proportion_of_edits.xlsx`) is from Zheng et al. (2019) and is already included in `data/raw/`. It can also be downloaded from:
+
+> https://github.com/adashiyj/Wikipedia_bots_taxonomy/blob/master/botrole_predict_and_proportion_of_edits.xlsx
+
+---
+
+## How to Run
+
+Run the four notebooks in order. Each notebook saves its outputs to `data/processed/` and the next notebook reads from there, so they can be run independently given the intermediate files.
+
+### Step 1 — Data collection (`01_data_collection.ipynb`)
+
+Collects newcomer accounts, edit histories, and talk page messages from the MediaWiki API. All collection steps are crash-safe: re-running will skip already-collected items.
+
+> ⚠️ This notebook makes ~30,000+ API calls and will take several hours. Set `TEST_MODE = True` in the configuration cell to run a quick end-to-end test on 50 accounts first.
+
+**Output:** `registration_log.jsonl`, `newcomer_edits.jsonl`, `talkpage_messages.jsonl`, `sample_index.json`
+
+### Step 2 — Preprocessing (`02_preprocessing.ipynb`)
+
+Computes retention labels, matches message senders to bot roles, builds the message-level and newcomer-level analysis datasets.
+
+> ⚠️ Retention labels require API calls (~5,800 requests). Re-running is safe — already-computed labels are loaded from `newcomers.csv`.
+
+**Output:** `newcomers.csv`, `messages.csv`, `analysis_dataset.csv`
+
+### Step 3 — Feature construction (`03_feature_construction.ipynb`)
+
+Fetches revision text from the API and scores each message for 21 politeness strategies using ConvoKit. Must be run in the Python 3.10 environment.
+
+> ⚠️ Run in the `convokit_env` environment. Text fetching is batched (50 revisions per request) and crash-safe.
+
+**Output:** `messages_with_text.csv`, `politeness_scores.csv`, `politeness_profiles.csv`
+
+### Step 4 — Analysis (`04_analysis.ipynb`)
+
+Produces all main results: descriptive statistics (Table 1), logistic regression models (Table 2), politeness heatmap (Figure 3), odds ratio plot (Figure 2), and robustness checks.
+
+**Output:** All figures saved to `data/figures/`
+
+---
+
+## Reproducing from Processed Data
+
+To skip data collection and reproduce only the analysis results, start directly from notebook 04 using the processed files already in the repository:
+
+```bash
+# From the Final project/ directory
+jupyter notebook 04_analysis.ipynb
+```
+
+All main tables and figures in the report can be reproduced by running notebook 04 alone.
+
+---
+
+## Reproducibility Notes
+
+- All random operations use a fixed seed (`RANDOM_SEED = 42`).
+- The working directory is set explicitly at the top of each notebook's configuration cell (`os.chdir`). Update this path if running from a different machine.
+- Collection window: May 25–31, 2025 (originally planned March–May 2025; cap exhausted within one week due to high registration volume).
+- Retention window: July 24–31, 2025 (60 days after first edit).
