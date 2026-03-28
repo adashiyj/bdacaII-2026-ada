@@ -77,7 +77,7 @@ To re-run the full pipeline from scratch, follow the steps below. Note that note
 
 The bot role classification file (`botrole_predict_and_proportion_of_edits.xlsx`) is from Zheng et al. (2019) and is already included in `data/raw/`. It can also be downloaded from:
 
-> [original study's repository](https://github.com/Nicozheng/Wikipedia_bots_taxonomy)
+> [The original study's Git repository](https://github.com/Nicozheng/Wikipedia_bots_taxonomy)
 
 ---
 
@@ -111,7 +111,7 @@ Fetches revision text from the API and scores each message for 21 politeness str
 
 ### Step 4 — Analysis (`04_analysis.ipynb`)
 
-Produces all main results: descriptive statistics (Table 1), logistic regression models (Table 2), politeness heatmap (Figure 3), odds ratio plot (Figure 2), and robustness checks.
+Produces all main results.
 
 **Output:** All figures saved to `figures/`
 
@@ -134,5 +134,5 @@ All main tables and figures in the report can be reproduced by running notebook 
 
 - All random operations use a fixed seed (`RANDOM_SEED = 42`).
 - The working directory is set explicitly at the top of each notebook's configuration cell (`os.chdir`). Update this path if running from a different machine.
-- Collection window: May 25–31, 2025 (originally planned March–May 2025; cap exhausted within one week due to high registration volume).
+- Collection window: May 25–31, 2025 (originally planned March–May 2025, cap exhausted within one week due to high registration volume).
 - Retention window: July 24–31, 2025 (60 days after first edit).
