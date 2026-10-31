@@ -18,9 +18,9 @@
 
 This project replicates and extends Zheng et al. (2019), who used unsupervised machine learning to develop a taxonomy of nine Wikipedia bot roles and found that different bot roles have differential effects on newcomer retention.
 
-**RQ1 (replication):** To what extent do different bot roles, compared to human editors, affect newcomer retention, and have these effects changed since Zheng et al. (2019)?
+**RQ1 (replication):** To what extent do the effects of different bot roles, compared to human editors, on newcomer retention differ from those reported by Zheng et al. (2019)?
 
-**RQ2 (extension):** To what extent do politeness strategies directed at newcomers differ across bot roles and human editors, and do these differences explain variation in newcomer retention?
+**RQ2 (extension):** How does politeness in messages from different bot roles and human editors relate to newcomer retention?
 
 The study collects 5,845 active newcomers registered on English Wikipedia during May 25–31, 2025, matches their talk page messages to bot role labels from Zheng et al.'s (2019) classification file, scores each message for 21 politeness strategies using ConvoKit, and estimates logistic regression models predicting newcomer retention.
 
