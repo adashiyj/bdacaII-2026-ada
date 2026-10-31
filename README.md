@@ -1,6 +1,6 @@
 # Human🧑‍💻 or Bot🤖️: Who Drives New Editors Away from English Wikipedia?
 
-**Author:** Ada Shi (13558846)
+**Author:** Ada Shi
 
 **Lecturer:** Dr. Felicia Loecherbach
 
